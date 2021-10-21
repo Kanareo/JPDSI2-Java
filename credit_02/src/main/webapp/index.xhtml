@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Kalkulator kredytowy</title>
+</h:head>
+<h:body>
+
+
+	<p:panel header="Kalkulator kredytowy">
+
+			<h:form>
+				<h:panelGrid columns="3" cellpadding="5" styleClass="bottom-space">
+					<p:outputLabel for="ida" value="Kwota:" />
+					<p:inputNumber id="ida" value="#{creditBB.a}" required="true" requiredMessage="Nie podano kwoty."/>
+					<p:message for="ida" />
+					
+					<p:outputLabel for="idp" value="Oprocentowanie:" />
+					<p:inputNumber id="idp" value="#{creditBB.p}" required="true" requiredMessage="Nie podano oprocentowania."/>
+					<p:message for="idp" />
+					
+					<p:outputLabel for="idy" value="Ilość lat:" />
+					<p:inputNumber id="idy" value="#{creditBB.y}" required="true" requiredMessage="Nie podano ilości lat."/>
+					<p:message for="idy" />
+					
+					<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
+				</h:panelGrid>			
+			</h:form>
+
+		</p:panel>
+
+</h:body>
+</html>
