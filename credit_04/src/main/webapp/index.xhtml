@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Kalkulator kredytowy">
+
+			<h:form>
+				<h:panelGrid columns="3" cellpadding="5" styleClass="bottom-space">
+				
+					<p:outputLabel for="ida" value="Kwota:" />
+					<p:inputText id="ida" value="#{creditBB.a}"
+						required="true" requiredMessage="Nie podano kwoty."
+						converterMessage="Podana kwota nie jest liczbą całkowitą"
+						validatorMessage="Minimalna kwota wynosi 100">
+						<f:validateLongRange minimum="100" />
+					</p:inputText>
+					<p:message for="ida" />
+					
+					<p:outputLabel for="idp" value="Oprocentowanie:" />
+					<p:inputText id="idp" value="#{creditBB.p}"
+						required="true" requiredMessage="Nie podano oprocentowania."
+						converterMessage="Podane oprocentowanie nie jest liczbą zmiennoprzecinkową"
+						validatorMessage="Oprocentowanie musi mieścić się w przedziale 1% - 20%">
+						<f:validateDoubleRange minimum="1.0" maximum="20.0" />
+					</p:inputText>
+					<p:message for="idp" />
+					
+					<p:outputLabel for="idy" value="Ilość lat:" />
+					<p:inputText id="idy" value="#{creditBB.y}"
+						required="true" requiredMessage="Nie podano ilości lat."
+						converterMessage="Podana ilość lat nie jest liczbą całkowitą"
+						validatorMessage="Minimalna długość kredytu to 1 rok">
+						<f:validateLongRange minimum="1" />
+					</p:inputText>
+					<p:message for="idy" />
+					
+					<p:commandButton value="Dodaj" action="#{creditBB.calc()}" update="@form"/>
+				</h:panelGrid>			
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>
